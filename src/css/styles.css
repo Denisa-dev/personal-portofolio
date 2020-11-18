@@ -1,0 +1,634 @@
+:root {
+    --primary-color      : #e74d4d;
+    --primary-light-color: #f89191;
+    --second-color       : #364b41;
+    --strong-color       : #5b6e7b;
+    --black-strong-color : #1b1d1f;
+    --black-light-color  : #2c363c;
+    --black-color        : #rgb(0, 0, 0);
+    --strong-light-color : #80909a;
+    --white-color        : #ffffff;
+    --blue-color         : #89cdd3;
+}
+
+* {
+    padding   : 0;
+    margin    : 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: Zeppelini;
+    src        : url(..//fonts/Zeppelin31.otf);
+}
+
+html {
+    font-size: 15px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+        Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    min-height     : 100vh;
+    width          : 100%;
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+}
+
+img {
+    width     : 100%;
+    height    : 100%;
+    object-fit: cover;
+}
+
+/* Header Section */
+
+#header {
+    position: fixed;
+    z-index : 2;
+    left    : 0;
+    top     : 0;
+    width   : 100vw;
+    height  : auto;
+}
+
+#header .header {
+    min-height      : 8vh;
+    background-color: rgba(43, 37, 37, 0.4);
+
+    transition: .3s ease background-color;
+}
+
+#header .nav-bar {
+    display        : flex;
+    align-items    : center;
+    justify-content: space-between;
+    width          : 100%;
+    height         : 100%;
+    max-width      : 1300px;
+    padding        : 0 15px 0 30px;
+}
+
+#header .brand {
+    background             : linear-gradient(to right, var(--primary-color), var(--primary-light-color));
+    background-clip        : border-box;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform         : uppercase;
+}
+
+#header .nav-list ul {
+    list-style      : none;
+    position        : absolute;
+    top             : 0;
+    padding-top     : 15px;
+    left            : 100%;
+    width           : 100vw;
+    height          : 100vh;
+    background-color: var(--black-strong-color);
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
+    flex-direction  : column;
+    z-index         : 1;
+    overflow-x      : hidden;
+    transition      : .5s ease left;
+}
+
+#header .nav-list ul li:hover a {
+    color: var(--primary-color);
+}
+
+#header .nav-list ul.active {
+    left: 0;
+}
+
+#header .nav-list ul a {
+    font-size      : 25px;
+    font-weight    : 500;
+    letter-spacing : 2px;
+    text-decoration: none;
+    color          : var(--white-color);
+    text-transform : uppercase;
+    padding        : 10px;
+    display        : block;
+}
+
+
+#header .nav-list ul a::after {
+    content       : attr(data-after);
+    position      : absolute;
+    top           : 50%;
+    left          : 50%;
+    transform     : translate(-50%, -50%) scale(0);
+    color         : rgba(142, 140, 140, 0.1);
+    font-size     : 55px;
+    letter-spacing: 20px;
+    z-index       : -1;
+    transition    : .3s ease letter-spacing;
+}
+
+#header .nav-list ul li:hover a::after {
+    transform     : translate(-50%, -50%) scale(1);
+    letter-spacing: initial;
+}
+
+#header .logo-bar {
+    height         : 60px;
+    width          : 60px;
+    display        : inline-block;
+    border         : 1px solid var(--primary-color);
+    border-radius  : 50%;
+    position       : relative;
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    z-index        : 100;
+    cursor         : pointer;
+    transform      : scale(.8);
+    margin-right   : 20px;
+}
+
+#header .logo-bar:after {
+    position     : absolute;
+    content      : '';
+    height       : 100%;
+    width        : 100%;
+    border-radius: 50%;
+    border       : 1px solid var(--primary-color);
+    animation    : logobar-pulse 1s ease infinite;
+}
+
+#header .logo-bar .bar {
+    height          : 1px;
+    width           : 30px;
+    position        : relative;
+    background-color: var(--primary-color);
+    z-index         : -1;
+}
+
+#header .logo-bar .bar::after,
+#header .logo-bar .bar::before {
+    content            : '';
+    position           : absolute;
+    height             : 0.7px;
+    width              : 100%;
+    left               : 0;
+    background-color   : var(--primary-color);
+    transition         : .3s ease;
+    transition-property: top, bottom;
+}
+
+#header .logo-bar .bar::after {
+    top: 8px;
+}
+
+#header .logo-bar .bar::before {
+    bottom: 8px;
+}
+
+#header .logo-bar.active .bar::before {
+    bottom: 0;
+}
+
+#header .logo-bar.active .bar::after {
+    top: 0;
+}
+
+/* End Header Section */
+
+/* Home Section */
+#home {
+    background-image   : url('..//images/curly-back.jpg');
+    background-size    : cover;
+    background-position: top center;
+    background-repeat  : no-repeat;
+    position           : relative;
+    z-index            : 1;
+}
+
+#home::after {
+    content         : '';
+    position        : absolute;
+    left            : 0;
+    top             : 0;
+    width           : 100%;
+    height          : 100%;
+    background-color: var(--black-strong-color);
+    opacity         : .4;
+    z-index         : -1;
+}
+
+#home .home {
+    max-width      : 1200px;
+    margin         : 0 auto;
+    padding        : 0 24px;
+    justify-content: flex-start;
+}
+
+#home h1 {
+    display        : block;
+    width          : fit-content;
+    font-size      : 32px;
+    position       : relative;
+    color          : transparent;
+    animation      : text-reveal-title .5s ease forwards;
+    animation-delay: 1s;
+}
+
+#home h1:nth-child(1) {
+    animation-delay: 1s;
+}
+
+#home h1:nth-child(2) {
+    animation-delay: 2s;
+}
+
+#home h1:nth-child(3) {
+    animation      : text-reveal-title-name .5s ease forwards;
+    animation-delay: 3s;
+}
+
+#home h1 span {
+    position        : absolute;
+    top             : 0;
+    left            : 0;
+    width           : 0;
+    height          : 100%;
+    background-color: var(--primary-color);
+    animation       : text-reveal-box 1s ease;
+    animation-delay : .5s;
+}
+
+#home h1:nth-child(1) span {
+    animation-delay: .5s;
+}
+
+#home h1:nth-child(2) span {
+    animation-delay: 1.5s;
+}
+
+#home h1:nth-child(3) span {
+    animation-delay: 2.5s;
+}
+
+#home #last-h1 {
+    margin-bottom: 15px;
+}
+
+#home .hire-me-button {
+    display            : inline-block;
+    padding            : 10px 20px;
+    color              : var(--white-color);
+    background-color   : transparent;
+    border             : 3px solid var(--primary-color);
+    text-transform     : uppercase;
+    font-size          : 15px;
+    letter-spacing     : 1px;
+    margin-top         : 20px;
+    transition         : .3s ease;
+    transition-property: background-color, color;
+    font-weight        : bold;
+    opacity            : 0;
+    animation          : reveal-button .5s ease 3.4s forwards;
+}
+
+#home p {
+    font-size      : 19px;
+    line-height    : 30px;
+    color          : transparent;
+    animation      : paragraph-reveal .5s ease forwards;
+    animation-delay: 3.2s;
+}
+
+#home .hire-me-button:hover {
+    color           : var(--white-color);
+    background-color: var(--primary-color);
+}
+
+/* End Home Section */
+
+
+/* About Section */
+#about {}
+
+#about .about {
+    flex-direction: column;
+    text-align    : center;
+    max-width     : 1500px;
+    margin        : 0 auto;
+    padding       : 50px 0 0 0;
+
+}
+
+#about .about-top p {
+    font-size  : 17px;
+    margin     : 15px 5% 20px 5%;
+    line-height: 25px;
+    font-weight: 10;
+    opacity    : 0;
+}
+
+#about .about .profile-pic {
+    max-width : 315px;
+    height    : 445px;
+    transform : translateY(50px);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
+}
+
+.span-title {
+    color: var(--primary-color);
+}
+
+#about .about .resume {
+    display            : inline-block;
+    padding            : 8px 13px;
+    color              : var(--primary-color);
+    background-color   : transparent;
+    border             : 2px solid var(--primary-color);
+    font-weight        : 450;
+    font-size          : 15px;
+    letter-spacing     : 1px;
+    transition         : .3s ease;
+    transition-property: background-color, color;
+    margin-bottom      : 25px;
+}
+
+#about .about .resume:hover {
+    color           : var(--white-color);
+    background-color: var(--primary-color);
+
+}
+
+.section-title {
+    font-size     : 30px;
+    color         : var(--black-light-color);
+    text-transform: uppercase;
+    text-align    : center;
+    letter-spacing: 2px;
+    font-weight   : 10;
+    opacity       : 0;
+}
+
+
+/* End About Section */
+
+/* Project Section */
+#projects {}
+
+#projects .project {
+    flex-direction: column;
+    text-align    : center;
+    max-width     : 1500px;
+    margin        : 0 auto;
+    padding       : 100px 0;
+}
+
+#projects .project-top p {
+    font-size  : 17px;
+    margin     : 15px 5% 0 5%;
+    line-height: 25px;
+    font-weight: 300;
+}
+
+#projects .project-bottom {
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    flex-wrap      : wrap;
+    margin-top     : 30px;
+}
+
+#projects .project-item {
+    flex-basis      : 80%;
+    display         : flex;
+    align-items     : flex-start;
+    justify-content : center;
+    flex-direction  : column;
+    padding         : 30px;
+    border-radius   : 10px;
+    background-image: url('..//images/laptop.jpg');
+    background-size : cover;
+    margin          : 10px 5%;
+    position        : relative;
+    z-index         : 1;
+    overflow        : hidden;
+    /*to keep the border-radius*/
+}
+
+#projects .project-item::after {
+    content         : '';
+    position        : absolute;
+    left            : 0;
+    top             : 0;
+    height          : 100%;
+    width           : 100%;
+    background-color: var(--black-strong-color);
+    opacity         : .4;
+    z-index         : -1;
+}
+
+#projects .project-bottom .icon {
+    height       : 80px;
+    width        : 80px;
+    margin-bottom: 10px;
+}
+
+#projects .project-item h2 {
+    font-size     : 23px;
+    color         : var(--white-color);
+    text-transform: uppercase;
+}
+
+#projects .project-item p {
+    font-size : 17px;
+    text-align: left;
+    color     : var(--white-color);
+}
+
+
+/* End Project Section */
+
+/* Key frames */
+
+@keyframes fade-in-title {
+    100% {
+        opacity  : 1;
+        transform: translateX(-20px);
+    }
+}
+
+@keyframes fade-in-picture {
+    100% {
+        opacity  : 1;
+        transform: translateY(0px);
+    }
+}
+
+@keyframes fade-in-about-paragraph {
+    100% {
+        opacity  : 1;
+        transform: translateX(10px);
+    }
+}
+
+@keyframes logobar-pulse {
+    0% {
+        opacity  : 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity  : 0;
+        transform: scale(1.4);
+    }
+}
+
+@keyframes text-reveal-box {
+    50% {
+        width: 100%;
+        left : 0;
+    }
+
+    100% {
+        width: 0;
+        left : 100%;
+    }
+}
+
+@keyframes text-reveal-title {
+    100% {
+        color: var(--white-color);
+    }
+}
+
+
+@keyframes text-reveal-title-name {
+    100% {
+        color: var(--primary-color);
+    }
+}
+
+@keyframes paragraph-reveal {
+    100% {
+        color: var(--white-color);
+    }
+}
+
+@keyframes reveal-button {
+    100% {
+        opacity: 1;
+    }
+}
+
+/* End Key frames */
+
+/* Media Query For Tablet*/
+@media only screen and (min-width: 768px) {
+    #home .hire-me-button {
+        font-size: 18px;
+        padding  : 10px 20px;
+    }
+
+    #projects .section-title {
+        font-size: 45px;
+    }
+
+    #home h1 {
+        font-size: 43px;
+    }
+
+    #home p {
+        font-size: 21px;
+    }
+
+    #projects .project-bottom .project-item {
+        flex-basis: 45%;
+        margin    : 2.5%;
+    }
+}
+
+/* End Media Query For Tablet*/
+
+/* Media Query For Desktop*/
+
+@media only screen and (min-width: 1200px) {
+    #home .hire-me-button {
+        font-size: 21px;
+        padding  : 10px 30px;
+    }
+
+    #projects .section-title {
+        font-size: 50px;
+    }
+
+    #home h1 {
+        font-size: 50px;
+    }
+
+    #home p {
+        font-size: 22px;
+    }
+
+    #home .home {
+        padding-left: 5%;
+    }
+
+    #header .logo-bar {
+        display: none;
+    }
+
+    #header .nav-list ul {
+        position        : initial;
+        display         : block;
+        height          : auto;
+        width           : fit-content;
+        background-color: transparent;
+    }
+
+    #header .nav-list ul li {
+        display: inline-block;
+    }
+
+
+    #header .nav-list ul li a {
+        color         : var(--strong-color);
+        font-size     : 13.5px;
+        letter-spacing: 1px;
+        font-weight   : bold;
+        position      : relative;
+    }
+
+    #header .nav-list ul li a::after {
+        content      : '';
+        width        : 0;
+        height       : 2.5px;
+        background   : linear-gradient(to right, var(--primary-light-color), var(--strong-light-color));
+        position     : absolute;
+        top          : 30px;
+        left         : 50%;
+        border-radius: 10px;
+        transition   : all 500ms ease;
+    }
+
+    #header .nav-list ul li a:hover {
+        background             : linear-gradient(to right, var(--primary-light-color), var(--strong-light-color));
+        background-clip        : border-box;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    #header .nav-list ul li a:hover::after {
+        left : 50%;
+        width: 80%;
+    }
+
+}
+
+/* End Media Query For Desktop*/
